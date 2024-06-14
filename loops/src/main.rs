@@ -1,9 +1,13 @@
 fn main() {
-    let mut count = 1;
-    let result = while count < 99 {
-        println!("Hello, world! Iteration #{}", count);
-        count += 1
-    };
+   let a: [&str;5] = [
+    "apple", 
+    "bananna", 
+    "strawberry", 
+    "blackberry", 
+    "orange"
+   ];
 
-    println!("{:#?}", result);
+   for (i, &item) in a.iter().enumerate() {
+        println!("{} is at index {}", item, i);
+   }
 }
