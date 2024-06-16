@@ -1,10 +1,9 @@
 fn main() {
     let mut s1: String = String::from("hello");
-    change(&mut s1);
-
-    println!("{}", s1);
-}
-
-fn change(s: &mut String) {
-    s.push_str(" world!");
+    
+    let r1 = &s1;
+    let r2 = &s1;
+    let r3 = &mut s1;
+    
+    println!("{}, {}, {}", r1, r2, r3);
 }
