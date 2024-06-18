@@ -5,12 +5,10 @@ struct Rectangle {
 }
 
 impl Rectangle {
-    fn area(self) -> u32 {
-        let Rectangle { width, height } = self;
-        width * height
+    fn area(&self) -> u32 {
+        self.width * self.height
     }
 }
-
 
 fn main() {
     let rect1 = Rectangle {
