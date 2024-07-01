@@ -7,7 +7,7 @@ fn main() {
     "orange"
    ];
 
-   for (i, &item) in a.iter().enumerate() {
-        println!("{} is at index {}", item, i);
+   for element in a.iter() {
+        println!("{}", element);
    }
 }
