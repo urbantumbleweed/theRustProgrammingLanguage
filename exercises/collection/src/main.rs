@@ -1,11 +1,12 @@
 fn main() {
-    let v: Vec<i32> = vec![1, 2, 3, 4, 5];
+    let mut v: Vec<i32> = vec![1, 2, 3, 4, 5];
 
-   let third: &i32 = &v[2];
-   print!("The third element is {}", third);
+    for i in &mut v {
+        *i = *i + 50;
+    }
 
-   match v.get(10) {
-    Some(i) => println!("the option is {}", i),
-    None => println!("there is nothing here"),
-   }
-}
+    for i in &v {
+        println!("The first line is {}", i)
+    }
+
+;}
