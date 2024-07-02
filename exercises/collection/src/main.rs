@@ -1,12 +1,23 @@
+#[derive(Debug)]
+enum SpreadsheetCell {
+    Int(i32),
+    Float(f64),
+    Text(String),
+}
+
+
 fn main() {
-    let mut v: Vec<i32> = vec![1, 2, 3, 4, 5];
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Float(3.1412),
+        SpreadsheetCell::Text(String::from("Hello World"))
+    ];
 
-    for i in &mut v {
-        *i = *i + 50;
+    for r in &row {
+        match r {
+            SpreadsheetCell::Int(i) => println!("Int is {}", i),
+            SpreadsheetCell::Float(n) => println!("Float is {}", n),
+            SpreadsheetCell::Text(s) => println!("{}", s),
+        }
     }
-
-    for i in &v {
-        println!("The first line is {}", i)
-    }
-
 ;}
