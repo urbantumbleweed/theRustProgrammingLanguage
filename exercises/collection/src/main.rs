@@ -1,23 +1,24 @@
-#[derive(Debug)]
-enum SpreadsheetCell {
-    Int(i32),
-    Float(f64),
-    Text(String),
-}
-
-
 fn main() {
-    let row = vec![
-        SpreadsheetCell::Int(3),
-        SpreadsheetCell::Float(3.1412),
-        SpreadsheetCell::Text(String::from("Hello World"))
-    ];
 
-    for r in &row {
-        match r {
-            SpreadsheetCell::Int(i) => println!("Int is {}", i),
-            SpreadsheetCell::Float(n) => println!("Float is {}", n),
-            SpreadsheetCell::Text(s) => println!("{}", s),
-        }
+    //given a list of integers
+    // use a vector and return the mean, median, and mode
+    // assume initially that the list is hardcoded
+    // later, refactor to code to accept command line arguments
+
+    let input: [i32; 10] = [9, 23, -2, 87, 12, -1, 34, 25, 9, 15];
+
+    let mut list: Vec<i32> = Vec::new();
+    fn 
+    for i in &input {
+        list.push(*i);
     }
-;}
+    let iterator = list.iter();
+    let mut sum: i32 = 0;
+    for v in iterator {
+      sum += *v;
+    }
+    let average: f64 = sum as f64/ list.len() as f64;
+    println!("The average is: {}. Sum is: {}", &average, &sum);
+
+
+}
