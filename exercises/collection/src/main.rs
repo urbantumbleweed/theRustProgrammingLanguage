@@ -17,24 +17,13 @@ fn main() {
     // calculate the median
 
     list.sort_unstable();
-    println!("Sorted list: {:#?} with length: {}", list, list.len());
     let middle_index = get_middle_index(&list);
     let median: &i32 = &list[*&middle_index];
-    println!("The median of the set is: {}. Middle index: {}", &median, &middle_index);
+    println!("The median of the set is: {}.", &median);
 
-    // calculate the mode
-    let mut counts = HashMap::new();
-    let mut current_mode: i32 = 0;
-    let mut highest_count: i32 = 0;
-    for &value in list.iter() {
-        let count = counts.entry(value).or_insert(0);
-        *count += 1;
-        if *count > highest_count {
-            highest_count = *count;
-            current_mode = value;
-        }
-    }
-    println!("The mode of the set is: {}. Count: {}", &current_mode, &highest_count);
+    // calculate the mode  
+    let mode = get_mode(&list);
+    println!("The mode of the set is: {}.", &mode);
 }
 
 fn get_middle_index<T>(list: &Vec<T>) -> usize {
@@ -48,4 +37,19 @@ fn get_middle_index<T>(list: &Vec<T>) -> usize {
     } else {
         (&length / HALF) as usize
     }
+}
+
+fn get_mode(list: &Vec<i32>) -> i32 {
+    let mut counts = HashMap::new();
+    let mut current_mode: i32 = *list.get(0).unwrap();
+    let mut highest_count: i32 = 0;
+    for &value in list.iter() {
+        let count = counts.entry(value).or_insert(0);
+        *count += 1;
+        if *count > highest_count {
+            highest_count = *count;
+            current_mode = value;
+        }
+    }
+    current_mode
 }
