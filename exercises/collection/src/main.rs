@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::io;
 
 fn main() {
 
@@ -6,10 +7,30 @@ fn main() {
     // use a vector and return the mean, median, and mode
     // assume initially that the list is hardcoded
     // later, refactor to code to accept command line arguments
+    const DONE: &str = "done";
+    let mut input = String::new();
+    let mut list: Vec<i32> = Vec::new();
+    let prompt = format!("Enter integers separated by the return key. When complete type '{}' and press return:", DONE);
+    println!("{}", prompt); 
 
-    let input: [i32; 12] = [9, 23, -2, 87, 12, -1, 34, 25, 9, 15, 17, 9];
+    
+    while input != DONE {
+        input.clear();
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read line");
+        if input.trim() == DONE {
+            break;
+        }
+        let number: i32 = input.trim()
+            .parse()
+            .expect("Please enter a valid integer");
+        list.push(number);
+    }
 
-    let mut list: Vec<i32> = input.to_vec();
+
+
+    // let mut list: Vec<i32> = input.to_vec();
     let sum: &i32 = &list.iter().fold(0, |sum, i| sum + i);
     let average: f64 = *sum as f64/ list.len() as f64;
     println!("The average is: {}. Sum is: {}", &average, &sum);
