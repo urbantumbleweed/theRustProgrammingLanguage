@@ -8,7 +8,7 @@ fn main() {
   // given an enter terminated string on stdin, convert to pig latin (phase 3)
 
   // phase 1
-  let word = String::from("irst");
+  let word = String::from("first");
 
   // split into characters
   let mut chars = UnicodeSegmentation::graphemes(word.as_str(),true)
@@ -29,7 +29,12 @@ fn main() {
 
 fn piggify(word: &mut Vec<&str>) -> String {
   let first_char: char = word.get(0).unwrap().chars().next().unwrap();
-  
+
+  match first_char {
+    'a'|'e'|'i'|'o'|'u'|'A'|'E'|'I'|'O'|'U' => handle_vowel(word),
+    _ => handle_consonant(word)
+  }
+
   fn handle_vowel(word: &mut Vec<&str>) -> String {
     const HAY: &str = "-hay";
     let mut pl_word = word.join("");
@@ -37,12 +42,13 @@ fn piggify(word: &mut Vec<&str>) -> String {
     pl_word
   }
 
-  match first_char {
-    'a'|'e'|'i'|'o'|'u' => handle_vowel(word),
-    'A'|'E'|'I'|'O'|'U' => handle_vowel(word),
-    other => {
-      println!("the case of {}", other);
-      other.to_string()
-    }
+  fn handle_consonant(word: &mut Vec<&str>) -> String {
+    const AY: &str = "ay";
+    let first_letter = word[..1].join("");
+    let mut rest = word[1..].join("");
+    rest.push('-');
+    rest.push_str(&first_letter);
+    rest.push_str(AY);
+    rest
   }
 }
