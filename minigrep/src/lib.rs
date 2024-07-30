@@ -1,24 +1,6 @@
 use std::fs;
 use std::error::Error;
 
-pub struct Config {
-  pub filename: String,
-  pub query: String,
-}
-
-impl Config {
-  pub fn new(args: & [String]) -> Result<Config, &'static str> {
-      if args.len() < 3 {
-          return Err("Not enough arguments");
-      }
-      let query: String = args[1].clone();
-      let filename: String = args[2].clone();
-      
-      Ok(Config { query, filename })
-  }
-
-}
-
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
   let mut matches = Vec::new();
 
@@ -39,6 +21,24 @@ pub fn run(config: &Config) -> Result<(), Box<dyn Error>> {
   }
 
   Ok(())
+}
+
+pub struct Config {
+  pub filename: String,
+  pub query: String,
+}
+
+impl Config {
+  pub fn new(args: & [String]) -> Result<Config, &'static str> {
+      if args.len() < 3 {
+          return Err("Not enough arguments");
+      }
+      let query: String = args[1].clone();
+      let filename: String = args[2].clone();
+      
+      Ok(Config { query, filename })
+  }
+
 }
 
 #[cfg(test)]
